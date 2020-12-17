@@ -1,23 +1,28 @@
 (()=>{
 
   // Uso de Let y Const
-  var nombre = 'Ricardo Tapia';
-  var edad = 23;
+  let nombre = 'Ricardo Tapia';
+  let edad = 23;
 
-  var PERSONAJE = {
+  const PERSONAJE = {
     nombre: nombre,
-    edad: edad
+    edad//se puede dejar asi si se llaman igual
   };
 
 
   // Cree una interfaz que sirva para validar el siguiente objeto
-  var batman = {
+  interface SuperHeroe{
+    nombre:string,
+    artesMarciales:string[]
+  }
+  
+  let batman:SuperHeroe = {
     nombre: 'Bruno Díaz',
     artesMarciales: ['Karate','Aikido','Wing Chun','Jiu-Jitsu']
   }
 
   // Convertir esta funcion a una funcion de flecha
-  function resultadoDoble( a, b ){
+  let resultadoDoble = ( a:number, b:number ):number =>{
     return (a + b) * 2
   }
 
@@ -25,8 +30,8 @@
   // donde NOMBRE = obligatorio
   //       PODER  = opcional
   //       ARMA   = por defecto = 'arco'
-  function getAvenger( nombre, poder, arma ){
-    var mensaje;
+  function getAvenger( nombre:string, poder?:string, arma:string = "arco" ){
+    let mensaje;
     if( poder ){
       mensaje = nombre + ' tiene el poder de: ' + poder + ' y un arma: ' + arma;
     }else{
@@ -42,6 +47,17 @@
   // También un método que calcule el área  =  base * altura,
   // ese método debe de retornar un numero.
 
+  class Rectangulo{
+    constructor(public base:number, public altura:number){
+      
+    }
 
+    //por ser clase no lleva la palabra function
+    calcularArea(){
+      return this.base*this.altura;
+    }
+
+    calcularArea2 = ():number => this.base * this.altura;
+  }
 
 })();
