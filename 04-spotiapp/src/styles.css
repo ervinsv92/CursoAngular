@@ -6,7 +6,12 @@ body {
 }
 
 hr {
-    border-color: white;
+    border-color: white !important;
+}
+
+th,
+td {
+    color: white;
 }
 
 .puntero {
