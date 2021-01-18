@@ -24,6 +24,11 @@ export class DeseosService {
     localStorage.setItem('data', JSON.stringify(this.listas));
   }
 
+  borrarLista(lista:Lista){
+    this.listas = this.listas.filter(listaData => listaData.id !== lista.id);
+    this.guardarStorage();
+  }
+
   cargarStorage(){
     if(localStorage.getItem('data')){
       this.listas = JSON.parse(localStorage.getItem('data'));
