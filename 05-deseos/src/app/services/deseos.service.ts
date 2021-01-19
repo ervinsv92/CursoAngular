@@ -29,6 +29,17 @@ export class DeseosService {
     this.guardarStorage();
   }
 
+  editarNombreLista(lista:Lista, nuevoTitulo:string){
+    this.listas = this.listas.map((listaItem:Lista)=>{
+      if(lista.id ==listaItem.id){
+        listaItem.titulo = nuevoTitulo
+      }
+        
+      return listaItem;
+    })
+    this.guardarStorage();
+  }
+
   cargarStorage(){
     if(localStorage.getItem('data')){
       this.listas = JSON.parse(localStorage.getItem('data'));
