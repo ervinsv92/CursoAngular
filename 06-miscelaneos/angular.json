@@ -31,7 +31,7 @@
             "scripts": [
               "src/assets/jquery/jquery.slim.min.js",
               "src/assets/tether/tether.js",
-              "src/assets/b4/js/bootstrap.min.js"              
+              "src/assets/b4/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "miscelaneos"
+    }
+  },
+  "defaultProject": "miscelaneos",
+  "cli": {
+    "analytics": false
+  }
 }
