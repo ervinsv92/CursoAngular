@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,7 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegistroComponent implements OnInit {
 
   usuario:UsuarioModel;
-  constructor(private auth:AuthService) { }
+  recordarme:boolean;
+  constructor(private auth:AuthService, private router:Router) { }
 
   ngOnInit() { 
     this.usuario = new UsuarioModel();
@@ -23,9 +25,15 @@ export class RegistroComponent implements OnInit {
     this.auth.nuevoUsuario(this.usuario).subscribe(
       resp =>{
         console.log(resp);
+        if(this.recordarme){
+          localStorage.setItem('email', this.usuario.email)
+        }else{
+          localStorage.removeItem('email')
+        }
+        this.router.navigateByUrl('/home');
       },
       err => {
-        console.log(err.error.error.message);
+        alert(`Error al registrar: ${err.error.error.message}`)
       }
     );
   }

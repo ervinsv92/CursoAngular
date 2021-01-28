@@ -60,11 +60,11 @@ export class AuthService {
 
   private guardarToken(idToken:string){
     this.userToken = idToken;
-    localStorage.set('token', idToken);
+    localStorage.setItem('token', idToken);
   }
 
   leerToken(){
-    if(localStorage.getItem('token'){
+    if(localStorage.getItem('token')){
       this.userToken = localStorage.getItem('token')
     }else{
       this.userToken = '';
