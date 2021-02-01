@@ -16,7 +16,9 @@
                required
                minlength="5"
                placeholder="Nombre"
-               #nombre="ngModel">
+               #nombre="ngModel" />
+        <span *ngIf="nombre.invalid && nombre.touched" 
+        class="form-text text-danger">Ingrese 5 letras</span>
       </div>
     </div>
 
@@ -28,11 +30,14 @@
                type="text"
                name="apellido"
                [class.is-invalid]="apellido.invalid && apellido.touched"
-               ngModel
+               [ngModel]="usuario.apellido"
                required
+               maxlength="5"
                placeholder="Apellido"
                #apellido="ngModel"
                >
+          <span *ngIf="apellido.invalid && apellido.touched" 
+               class="form-text text-danger">Ingrese 5 letras</span>
       </div>
     </div>
 
@@ -45,13 +50,15 @@
       <input class="form-control"
              type="email"
              [class.is-invalid]="correo.invalid && correo.touched"
-             ngModel
+             [ngModel]="usuario.correo"
              name="correo"
              required
              placeholder="Correo electrónico"
              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
              #correo="ngModel"
              >
+        <span *ngIf="correo.invalid && correo.touched" 
+             class="form-text text-danger">El correo es oblgatorio</span>
     </div>
   </div>
 
