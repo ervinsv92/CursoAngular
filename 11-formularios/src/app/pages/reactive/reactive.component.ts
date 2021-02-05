@@ -13,6 +13,7 @@ export class ReactiveComponent implements OnInit {
   constructor(private fb:FormBuilder, private validadores:ValidadoresService) { 
     this.crearFormulario();
     this.cargarDataAlFormulario();
+    this.crearListeners();
   }
 
   ngOnInit() {
@@ -61,7 +62,7 @@ export class ReactiveComponent implements OnInit {
       nombre:['', Validators.required],
       apellido:['', [Validators.required, Validators.minLength(5), this.validadores.noSolano]], //no se pone () en la funcion de validacion creada, ya que el evento del form es el que la ejecuta
       correo:['', [Validators.required ,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      correo:['', , this.validadores.existeUsuario ],
+      usuario:['', , this.validadores.existeUsuario ], //por ser asincrono se deja un espacio en la segunda posicion
       pass1 : ['', Validators.required],
       pass2 : ['', Validators.required],
       direccion:this.fb.group({
@@ -93,6 +94,18 @@ export class ReactiveComponent implements OnInit {
 
   }
 
+  crearListeners(){
+    this.forma.valueChanges.subscribe(valor =>{
+      console.log(valor)
+    });
+
+    this.forma.statusChanges.subscribe(status =>{
+      console.log(status)
+    });
+
+    this.forma.get('nombre').valueChanges.subscribe(console.log);
+  }
+
   cargarDataAlFormulario(){
     //se puede utilizar el reset en lugar del setValue, esto es mejor para no tener que pasar el objeto completo
     //this.forma.setValue(//tambien sirve, pero con los datos completos
@@ -101,6 +114,8 @@ export class ReactiveComponent implements OnInit {
         "nombre": "Ervin",
         "apellido": "Solano",
         "correo": "correo@correo.com",
+        "pass1":"123",
+        "pass2":"123",
         "direccion": {
           "distrito": "por ahi",
           "ciudad": "nada"
